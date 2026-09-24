@@ -9,7 +9,7 @@ type Category = "All" | "Ransomware" | "Stealth & Evasion" | "Persistence & C2" 
 
 interface ModuleData {
   id: number;
-  icon: any;
+  icon: React.ElementType;
   title: string;
   description: string;
   threat: string;
