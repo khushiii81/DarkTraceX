@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Terminal, ChevronRight, Activity, BarChart2, Bug, Cpu, Lock, Network, Filter } from "lucide-react";
+import { Terminal, ChevronRight, Activity, BarChart2, Bug, Cpu, Lock, Network, AlertTriangle, Radio, Smartphone, FileWarning, Key, Skull, Filter } from "lucide-react";
 
 type Category = "All" | "Ransomware" | "Stealth & Evasion" | "Persistence & C2" | "Real-World Threats";
 
@@ -85,6 +85,72 @@ const MODULES: ModuleData[] = [
     tags: ["Injection", "Memory", "Shellcode"],
     stats: { simulations: "1.7K", complexity: "Expert" },
     category: ["Stealth & Evasion"]
+  },
+  {
+    id: 7,
+    icon: AlertTriangle,
+    title: "WannaCry Ransomware Simulator",
+    description: "Experience the mechanics of a real ransomware attack. Watch file encryption spread and interact with the infamous ransom note.",
+    threat: "CRITICAL",
+    threatColor: "threat-critical",
+    tags: ["Ransomware", "Encryption", "WannaCry"],
+    stats: { simulations: "5.1K", complexity: "Advanced" },
+    category: ["Ransomware", "Real-World Threats"]
+  },
+  {
+    id: 8,
+    icon: Radio,
+    title: "Stuxnet ICS/SCADA Sabotage",
+    description: "Simulate the world's first cyberweapon. Observe the malicious PLC override that destroyed nuclear centrifuges.",
+    threat: "CRITICAL",
+    threatColor: "threat-critical",
+    tags: ["Stuxnet", "SCADA", "ICS"],
+    stats: { simulations: "3.2K", complexity: "Expert" },
+    category: ["Real-World Threats"]
+  },
+  {
+    id: 9,
+    icon: Smartphone,
+    title: "Pegasus Zero-Click Spyware",
+    description: "Understand mobile exploitation. Animate an invisible zero-click payload silently extracting encrypted device data.",
+    threat: "CRITICAL",
+    threatColor: "threat-critical",
+    tags: ["Spyware", "Zero-Click", "Mobile"],
+    stats: { simulations: "2.5K", complexity: "Expert" },
+    category: ["Stealth & Evasion", "Real-World Threats"]
+  },
+  {
+    id: 10,
+    icon: FileWarning,
+    title: "Emotet / TrickBot Dropper",
+    description: "Analyze how a malicious macro document downloads a fileless payload into memory and establishes C2 beaconing.",
+    threat: "HIGH",
+    threatColor: "threat-high",
+    tags: ["Trojan", "Macro", "C2"],
+    stats: { simulations: "4.2K", complexity: "Advanced" },
+    category: ["Persistence & C2", "Real-World Threats"]
+  },
+  {
+    id: 11,
+    icon: Key,
+    title: "Zeus / RedLine Stealer",
+    description: "Watch process injection into explorer.exe, registry persistence, and active memory scraping for browser credentials.",
+    threat: "CRITICAL",
+    threatColor: "threat-critical",
+    tags: ["Stealer", "Injection", "Scraping"],
+    stats: { simulations: "3.8K", complexity: "Expert" },
+    category: ["Real-World Threats"]
+  },
+  {
+    id: 12,
+    icon: Skull,
+    title: "NotPetya Destructive Wiper",
+    description: "Simulate a fake ransomware attack that actually wipes the Master Boot Record (MBR) and destroys the Master File Table.",
+    threat: "CRITICAL",
+    threatColor: "threat-critical",
+    tags: ["Wiper", "MBR", "Destructive"],
+    stats: { simulations: "6.1K", complexity: "Expert" },
+    category: ["Ransomware", "Real-World Threats"]
   },
 ];
 

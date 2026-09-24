@@ -12,6 +12,12 @@ import {
   Lock,
   ChevronRight,
   Zap,
+  AlertTriangle, 
+  Radio, 
+  Smartphone, 
+  FileWarning, 
+  Key, 
+  Skull,
   BarChart2
 } from "lucide-react";
 import { ThreatGlobeCanvas } from "@/components/ui/ThreatGlobe";
@@ -25,7 +31,7 @@ const TERMINAL_LINES = [
   "> Hash Analyzer (MD5/SHA256): READY",
   "> Process Injection Simulator: READY",
   "> Dynamic Behavior Tracker: READY",
-  "> ALL 12 MODULES ONLINE",
+  "> ALL 6 MODULES ONLINE",
   "$ _",
 ];
 
@@ -65,8 +71,8 @@ function TerminalTyper() {
             line.startsWith(">")
               ? "text-green-400/70"
               : line.startsWith("$")
-                ? "text-red-400"
-                : "text-gray-400"
+              ? "text-red-400"
+              : "text-gray-400"
           }
         >
           {line}
@@ -143,6 +149,60 @@ const FEATURES = [
     border: "border-rose-900/40",
     href: "/module/6",
     module: "06",
+  },
+  {
+    icon: AlertTriangle,
+    title: "WannaCry Ransomware",
+    description: "Experience the mechanics of a real ransomware attack and interact with the infamous ransom note.",
+    color: "from-red-900/30 to-red-950/10",
+    border: "border-red-900/40",
+    href: "/module/7",
+    module: "07",
+  },
+  {
+    icon: Radio,
+    title: "Stuxnet ICS Sabotage",
+    description: "Observe the malicious PLC override that destroyed nuclear centrifuges in the real world.",
+    color: "from-orange-900/30 to-orange-950/10",
+    border: "border-orange-900/40",
+    href: "/module/8",
+    module: "08",
+  },
+  {
+    icon: Smartphone,
+    title: "Pegasus Zero-Click",
+    description: "Animate an invisible zero-click payload silently extracting encrypted device data.",
+    color: "from-rose-900/30 to-rose-950/10",
+    border: "border-rose-900/40",
+    href: "/module/9",
+    module: "09",
+  },
+  {
+    icon: FileWarning,
+    title: "Emotet / TrickBot",
+    description: "Analyze how a malicious macro document downloads a fileless payload into memory.",
+    color: "from-red-900/30 to-red-950/10",
+    border: "border-red-900/40",
+    href: "/module/10",
+    module: "10",
+  },
+  {
+    icon: Key,
+    title: "Zeus / RedLine Stealer",
+    description: "Watch registry persistence and active memory scraping for browser credentials.",
+    color: "from-orange-900/30 to-orange-950/10",
+    border: "border-orange-900/40",
+    href: "/module/11",
+    module: "11",
+  },
+  {
+    icon: Skull,
+    title: "NotPetya Wiper",
+    description: "Simulate a fake ransomware attack that actually wipes the Master Boot Record (MBR).",
+    color: "from-rose-900/30 to-rose-950/10",
+    border: "border-rose-900/40",
+    href: "/module/12",
+    module: "12",
   },
 ];
 
