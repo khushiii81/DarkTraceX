@@ -1,7 +1,6 @@
 {
   "version": 2,
   "name": "darktracex",
-  "regions": ["iad1", "cdg1", "sin1"],
   "headers": [
     {
       "source": "/(.*)",
