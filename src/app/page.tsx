@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import {
-  Shield,
   Terminal,
   Cpu,
   Activity,
