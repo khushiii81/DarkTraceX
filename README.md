@@ -1,36 +1,170 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DarkTraceX 🔴
 
-## Getting Started
+> **Interactive Malware Mechanics & Attack Vector Simulator**  
+> An educational platform for cybersecurity students and analysts.
 
-First, run the development server:
+[![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://www.typescriptlang.org)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-purple?logo=framer)](https://www.framer.com/motion)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-cyan?logo=tailwindcss)](https://tailwindcss.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-red)](LICENSE)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## ⚠️ Educational Disclaimer
+
+**DarkTraceX contains NO real malware.** All simulations are educational JavaScript animations that demonstrate concepts. No actual system calls, network requests to malicious infrastructure, or file system modifications are made.
+
+---
+
+## 🚀 Features
+
+| Module | Topic | Key Concepts |
+|--------|-------|--------------|
+| 01 | Virus vs. Worm Network Map | Canvas animation, propagation comparison |
+| 02 | PE Structure Inspector | DOS Header, File Header, Optional Header, Sections |
+| 03 | Hash & Static Analyzer | MD5/SHA-1/SHA-256 visualization, string extraction |
+| 04 | Packer & Obfuscation Sandbox | UPX compression, entropy analysis |
+| 05 | Dynamic Behavior Tracker | Process/file/registry/network timeline |
+| 06 | Memory & Process Injection | VirtualAllocEx, WriteProcessMemory, CreateRemoteThread |
+| 07 | WannaCry Ransomware Simulator | Encryption spread, payload execution, ransom overlay |
+| 08 | Stuxnet ICS/SCADA Sabotage | SCADA spoofing, PLC manipulation, centrifuge damage |
+| 09 | Pegasus Zero-Click Spyware | Mobile exploitation, stealth delivery, exfiltration |
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 14 (App Router)
+- **Language:** TypeScript 5
+- **Styling:** Tailwind CSS v3 + Custom CSS (Inferno Red theme)
+- **Animation:** Framer Motion 11 (spring physics)
+- **Graphics:** HTML5 Canvas API
+- **Fonts:** JetBrains Mono (monospace), Inter (UI)
+- **Deployment:** Vercel
+
+---
+
+## 📁 Project Structure
+
+```
+darktracex/
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx          # Root layout, fonts, metadata, JSON-LD
+│   │   ├── globals.css         # Inferno Red theme, animations, utilities
+│   │   ├── page.tsx            # Homepage with canvas hero + module grid
+│   │   ├── dashboard/
+│   │   │   └── page.tsx        # Module selector dashboard
+│   │   ├── module/
+│   │   │   ├── 1/page.tsx      # Virus vs. Worm simulation
+│   │   │   ├── 2/page.tsx      # PE Structure Inspector ★
+│   │   │   ├── 3/page.tsx      # Hash & String Analyzer
+│   │   │   ├── 4/page.tsx      # Packer Sandbox
+│   │   │   ├── 5/page.tsx      # Dynamic Behavior Tracker
+│   │   │   ├── 6/page.tsx      # Process Injection Lab
+│   │   │   ├── 7/page.tsx      # WannaCry Ransomware Simulator
+│   │   │   ├── 8/page.tsx      # Stuxnet ICS/SCADA Sabotage
+│   │   │   └── 9/page.tsx      # Pegasus Zero-Click Spyware
+│   │   ├── about/page.tsx
+│   │   ├── contact/page.tsx
+│   │   └── not-found.tsx       # Custom 404 "System Breached"
+│   ├── components/
+│   │   └── layout/
+│   │       ├── Navbar.tsx
+│   │       └── Footer.tsx
+│   └── lib/
+│       └── utils.ts
+├── public/
+│   ├── robots.txt
+│   └── sitemap.xml
+├── next.config.js              # CSP + security headers
+├── vercel.json                 # Deployment config
+├── SECURITY.md
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🔧 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Prerequisites
 
-## Learn More
+- Node.js 18+
+- npm 9+
 
-To learn more about Next.js, take a look at the following resources:
+### Installation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/darktracex.git
+cd darktracex
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Install dependencies
+npm install
 
-## Deploy on Vercel
+# Start development server
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open [http://localhost:3000](http://localhost:3000)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Production Build
+
+```bash
+npm run build
+npm start
+```
+
+---
+
+## 🌐 Deployment (Vercel)
+
+### One-click Deploy
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/darktracex)
+
+### Manual Deploy
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel --prod
+```
+
+### Custom Domain
+
+1. Go to your Vercel project settings
+2. Navigate to **Domains**
+3. Add your custom domain (e.g., `darktracex.com`)
+4. Update DNS records as instructed
+
+---
+
+## 🔒 Security
+
+See [SECURITY.md](SECURITY.md) for our security policy and vulnerability reporting process.
+
+Key security measures:
+- Strict Content Security Policy (CSP)
+- `X-Frame-Options: DENY`
+- `X-Content-Type-Options: nosniff`
+- HSTS with preload
+- Input sanitization on all forms
+- No external script injection
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — see [LICENSE](LICENSE) for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- [SANS Institute](https://www.sans.org) — Malware analysis methodology
+- [Practical Malware Analysis](https://nostarch.com/malware) — Sikorski & Honig
+- [PE Format Documentation](https://docs.microsoft.com/en-us/windows/win32/debug/pe-format) — Microsoft

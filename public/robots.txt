@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Allow: /dashboard
+Allow: /module/
+Allow: /about
+Allow: /contact
+
+Disallow: /api/
+Disallow: /_next/
+
+Sitemap: https://darktracex.vercel.app/sitemap.xml
