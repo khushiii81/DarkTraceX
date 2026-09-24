@@ -1,10 +1,25 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Terminal, ChevronRight, Activity, BarChart2, Bug, Cpu, Lock, Network, AlertTriangle, Radio, Smartphone, FileWarning, Key, Skull } from "lucide-react";
+import { Terminal, ChevronRight, Activity, BarChart2, Bug, Cpu, Lock, Network, AlertTriangle, Radio, Smartphone, FileWarning, Key, Skull, Filter } from "lucide-react";
 
-const MODULES = [
+type Category = "All" | "Ransomware" | "Stealth & Evasion" | "Persistence & C2" | "Real-World Threats";
+
+interface ModuleData {
+  id: number;
+  icon: any;
+  title: string;
+  description: string;
+  threat: string;
+  threatColor: string;
+  tags: string[];
+  stats: { simulations: string; complexity: string };
+  category: Category[];
+}
+
+const MODULES: ModuleData[] = [
   {
     id: 1,
     icon: Network,
@@ -14,6 +29,7 @@ const MODULES = [
     threatColor: "threat-high",
     tags: ["Phishing", "Macros", "C2 Drop"],
     stats: { simulations: "1.2K", complexity: "Medium" },
+    category: ["Persistence & C2"]
   },
   {
     id: 2,
@@ -24,6 +40,7 @@ const MODULES = [
     threatColor: "text-purple-500",
     tags: ["Obfuscation", "UPX", "IAT Rebuild"],
     stats: { simulations: "3.4K", complexity: "Advanced" },
+    category: ["Stealth & Evasion"]
   },
   {
     id: 3,
@@ -34,6 +51,7 @@ const MODULES = [
     threatColor: "threat-high",
     tags: ["Sandbox", "Evasion", "Telemetry"],
     stats: { simulations: "2.8K", complexity: "Advanced" },
+    category: ["Stealth & Evasion"]
   },
   {
     id: 4,
@@ -44,6 +62,7 @@ const MODULES = [
     threatColor: "threat-critical",
     tags: ["Persistence", "Registry", "Services"],
     stats: { simulations: "940", complexity: "Advanced" },
+    category: ["Persistence & C2"]
   },
   {
     id: 5,
@@ -54,6 +73,7 @@ const MODULES = [
     threatColor: "threat-critical",
     tags: ["Registry", "Persistence", "Dynamic"],
     stats: { simulations: "2.1K", complexity: "Advanced" },
+    category: ["Stealth & Evasion"]
   },
   {
     id: 6,
@@ -64,6 +84,7 @@ const MODULES = [
     threatColor: "threat-critical",
     tags: ["Injection", "Memory", "Shellcode"],
     stats: { simulations: "1.7K", complexity: "Expert" },
+    category: ["Stealth & Evasion"]
   },
   {
     id: 7,
@@ -74,6 +95,7 @@ const MODULES = [
     threatColor: "threat-critical",
     tags: ["Ransomware", "Encryption", "WannaCry"],
     stats: { simulations: "5.1K", complexity: "Advanced" },
+    category: ["Ransomware", "Real-World Threats"]
   },
   {
     id: 8,
@@ -84,6 +106,7 @@ const MODULES = [
     threatColor: "threat-critical",
     tags: ["Stuxnet", "SCADA", "ICS"],
     stats: { simulations: "3.2K", complexity: "Expert" },
+    category: ["Real-World Threats"]
   },
   {
     id: 9,
@@ -94,6 +117,7 @@ const MODULES = [
     threatColor: "threat-critical",
     tags: ["Spyware", "Zero-Click", "Mobile"],
     stats: { simulations: "2.5K", complexity: "Expert" },
+    category: ["Stealth & Evasion", "Real-World Threats"]
   },
   {
     id: 10,
@@ -104,6 +128,7 @@ const MODULES = [
     threatColor: "threat-high",
     tags: ["Trojan", "Macro", "C2"],
     stats: { simulations: "4.2K", complexity: "Advanced" },
+    category: ["Persistence & C2", "Real-World Threats"]
   },
   {
     id: 11,
@@ -114,6 +139,7 @@ const MODULES = [
     threatColor: "threat-critical",
     tags: ["Stealer", "Injection", "Scraping"],
     stats: { simulations: "3.8K", complexity: "Expert" },
+    category: ["Real-World Threats"]
   },
   {
     id: 12,
@@ -124,6 +150,7 @@ const MODULES = [
     threatColor: "threat-critical",
     tags: ["Wiper", "MBR", "Destructive"],
     stats: { simulations: "6.1K", complexity: "Expert" },
+    category: ["Ransomware", "Real-World Threats"]
   },
 ];
 
@@ -134,16 +161,18 @@ const threatBadge: Record<string, string> = {
   CRITICAL: "bg-red-950/50 border-red-600/60 text-red-300",
 };
 
+const TABS: Category[] = ["All", "Ransomware", "Stealth & Evasion", "Persistence & C2", "Real-World Threats"];
+
 export default function DashboardPage() {
+  const [activeTab, setActiveTab] = useState<Category>("All");
+
+  const filteredModules = MODULES.filter((mod) => activeTab === "All" || mod.category.includes(activeTab));
+
   return (
     <div className="min-h-screen pt-20 pb-16 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-12"
-        >
+        {/* Header - No initial animations to prevent lag */}
+        <div className="mb-8">
           <div className="flex items-center gap-2 text-xs font-mono text-gray-600 mb-4">
             <span>darktracex</span>
             <ChevronRight className="w-3 h-3" />
@@ -158,102 +187,114 @@ export default function DashboardPage() {
               Simulation <span className="text-red-500">Dashboard</span>
             </h1>
           </div>
-          <p className="text-gray-500 max-w-xl">
-            Select a module below to launch an interactive malware mechanics simulation. All environments are sandboxed and educational.
+          <p className="text-gray-400 max-w-xl text-lg">
+            Select a module category below to launch a highly interactive malware mechanics simulation. All environments are sandboxed.
           </p>
+        </div>
 
-          {/* Status bar */}
-          <div className="flex items-center gap-6 mt-6 flex-wrap">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-green-500" />
-              <span className="text-xs text-gray-500 font-mono">12 modules online</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-              <span className="text-xs text-gray-500 font-mono">simulation engine active</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-orange-500" />
-              <span className="text-xs text-gray-500 font-mono">no real malware</span>
-            </div>
-          </div>
-        </motion.div>
+        {/* Custom Tab Navigation */}
+        <div className="flex items-center gap-2 mb-10 overflow-x-auto pb-4 scrollbar-hide border-b border-red-900/20">
+          <Filter className="w-5 h-5 text-gray-500 mr-2 flex-shrink-0" />
+          {TABS.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={`relative px-5 py-2.5 text-sm font-semibold rounded-full whitespace-nowrap transition-colors ${
+                activeTab === tab
+                  ? "text-white"
+                  : "text-gray-400 hover:text-gray-200 hover:bg-white/5"
+              }`}
+            >
+              {activeTab === tab && (
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute inset-0 bg-red-900/30 border border-red-700/50 rounded-full"
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                />
+              )}
+              <span className="relative z-10">{tab}</span>
+            </button>
+          ))}
+        </div>
 
         {/* Module Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          {MODULES.map((mod, i) => {
-            const Icon = mod.icon;
-            return (
-              <motion.div
-                key={mod.id}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08, type: "spring", stiffness: 120 }}
-                whileHover={{ y: -6, transition: { type: "spring", stiffness: 400 } }}
-              >
-                <Link
-                  href={`/module/${mod.id}`}
-                  id={`dashboard-module-${mod.id}`}
-                  className="module-card group relative flex flex-col rounded-2xl p-6 h-full neon-border overflow-hidden"
+          <AnimatePresence mode="popLayout">
+            {filteredModules.map((mod) => {
+              const Icon = mod.icon;
+              return (
+                <motion.div
+                  key={mod.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.2 }}
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 >
-                  {/* Module number watermark */}
-                  <span className="absolute bottom-2 right-4 text-8xl font-black text-white/[0.03] font-mono select-none">
-                    {String(mod.id).padStart(2, "0")}
-                  </span>
+                  <Link
+                    href={`/module/${mod.id}`}
+                    className="module-card group relative flex flex-col rounded-2xl p-6 h-full border border-red-900/20 bg-[#0a0a0a]/80 backdrop-blur shadow-lg hover:shadow-red-900/20 hover:border-red-500/50 transition-all overflow-hidden"
+                  >
+                    {/* Background glow on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-red-500/0 via-red-500/0 to-red-500/5 group-hover:to-red-500/10 transition-colors" />
 
-                  {/* Top row */}
-                  <div className="flex items-start justify-between mb-5">
-                    <div className="w-12 h-12 rounded-xl bg-red-950/50 border border-red-900/40 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <Icon className="w-6 h-6 text-red-400" />
+                    {/* Top row */}
+                    <div className="relative z-10 flex items-start justify-between mb-5">
+                      <div className="w-12 h-12 rounded-xl bg-black border border-white/10 flex items-center justify-center group-hover:border-red-500/50 transition-colors">
+                        <Icon className="w-6 h-6 text-gray-400 group-hover:text-red-400 transition-colors" />
+                      </div>
+                      <span
+                        className={`text-[10px] font-mono font-bold px-3 py-1 rounded-full border ${
+                          threatBadge[mod.threat]
+                        }`}
+                      >
+                        {mod.threat}
+                      </span>
                     </div>
-                    <span
-                      className={`text-xs font-mono font-bold px-3 py-1 rounded-full border ${
-                        threatBadge[mod.threat]
-                      }`}
-                    >
-                      {mod.threat}
-                    </span>
-                  </div>
 
-                  {/* Content */}
-                  <div className="flex-1">
-                    <h2 className="text-lg font-bold text-white mb-2 leading-snug">
-                      {mod.title}
-                    </h2>
-                    <p className="text-gray-500 text-sm leading-relaxed mb-4">
-                      {mod.description}
-                    </p>
+                    {/* Content */}
+                    <div className="relative z-10 flex-1">
+                      <h2 className="text-xl font-bold text-white mb-2 leading-snug group-hover:text-red-50 transition-colors">
+                        {mod.title}
+                      </h2>
+                      <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                        {mod.description}
+                      </p>
 
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-5">
-                      {mod.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-xs px-2 py-1 rounded bg-white/5 text-gray-400 font-mono"
-                        >
-                          {tag}
-                        </span>
-                      ))}
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {mod.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[10px] px-2 py-1 rounded-md bg-white/5 text-gray-400 font-mono border border-white/5"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Footer */}
-                  <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                    <div className="flex items-center gap-4 text-xs text-gray-600 font-mono">
-                      <span>{mod.stats.simulations} runs</span>
-                      <span className="text-gray-700">|</span>
-                      <span>{mod.stats.complexity}</span>
+                    {/* Footer */}
+                    <div className="relative z-10 flex items-center justify-between pt-4 border-t border-white/5">
+                      <div className="flex items-center gap-3 text-xs text-gray-500 font-mono">
+                        <div className="flex items-center gap-1">
+                          <Activity className="w-3 h-3" /> {mod.stats.simulations}
+                        </div>
+                        <div className="w-1 h-1 rounded-full bg-gray-600" />
+                        <span>{mod.stats.complexity}</span>
+                      </div>
+                      <div className="flex items-center gap-1 text-red-500 text-xs font-bold group-hover:gap-2 transition-all">
+                        <Terminal className="w-3 h-3" />
+                        RUN
+                        <ChevronRight className="w-3 h-3" />
+                      </div>
                     </div>
-                    <div className="flex items-center gap-1 text-red-500 text-xs font-semibold group-hover:gap-2 transition-all">
-                      <Terminal className="w-3 h-3" />
-                      Run
-                      <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            );
-          })}
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </AnimatePresence>
         </div>
       </div>
     </div>

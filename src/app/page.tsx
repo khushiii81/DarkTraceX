@@ -181,27 +181,20 @@ export default function HomePage() {
         {/* Radial gradient */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(220,20,60,0.12),rgba(255,255,255,0))]" />
 
-        <motion.div
-          style={{ opacity: heroOpacity, y: heroY }}
+        <div
+          style={{ opacity: heroOpacity.get(), transform: `translateY(${heroY.get()}px)` }}
           className="relative z-10 text-center max-w-5xl mx-auto px-4"
         >
           {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+          <div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-900/50 bg-red-950/20 text-red-400 text-xs font-mono font-semibold uppercase tracking-widest mb-8"
           >
             <span className="w-2 h-2 rounded-full bg-red-500 pulse-ring" />
             Educational Simulation Platform
-          </motion.div>
+          </div>
 
           {/* Headline */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
+          <div>
             {/* Watermark */}
             <div className="watermark absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full text-center">
               DTX
@@ -219,12 +212,9 @@ export default function HomePage() {
               </span>
               <span className="text-red-400">X</span>
             </h1>
-          </motion.div>
+          </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          <p
             className="text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto mb-8 leading-relaxed"
           >
             An interactive{" "}
@@ -237,12 +227,9 @@ export default function HomePage() {
             </span>
             . Explore PE structures, process injection, obfuscation, and more
             — safely.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.55 }}
+          <div
             className="flex flex-wrap items-center justify-center gap-4 mb-16"
           >
             <Link
@@ -261,18 +248,15 @@ export default function HomePage() {
             >
               Learn More
             </Link>
-          </motion.div>
+          </div>
 
           {/* Terminal */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.7 }}
+          <div
             className="max-w-xl mx-auto"
           >
             <TerminalTyper />
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Scroll hint */}
         <motion.div

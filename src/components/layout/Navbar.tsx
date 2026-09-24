@@ -27,9 +27,9 @@ export function Navbar() {
             <motion.div
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.6, type: "spring" }}
-              className="w-8 h-8 rounded-lg bg-gradient-to-br from-red-700 to-red-900 flex items-center justify-center glow-red overflow-hidden relative"
+              className="w-10 h-10 flex items-center justify-center overflow-hidden relative drop-shadow-[0_0_10px_rgba(255,0,0,0.5)]"
             >
-              <Image src="/logo.png" alt="DarkTraceX" fill sizes="32px" className="object-cover" />
+              <Image src="/logo.png" alt="DarkTraceX" fill sizes="40px" className="object-contain" />
             </motion.div>
             <span className="font-mono font-bold text-lg tracking-tight">
               <span className="text-red-500">Dark</span>
