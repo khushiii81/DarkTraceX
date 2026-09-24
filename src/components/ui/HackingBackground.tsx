@@ -1,63 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
-function MatrixRain() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-    resize();
-    window.addEventListener("resize", resize);
-
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()";
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops: number[] = [];
-
-    for (let x = 0; x < columns; x++) {
-      drops[x] = Math.random() * -100; // Start offscreen randomly
-    }
-
-    let animId: number;
-    const draw = () => {
-      ctx.fillStyle = "rgba(10, 10, 10, 0.1)"; // Fade effect
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = "rgba(255, 30, 39, 0.4)"; // Inferno Red text
-      ctx.font = `${fontSize}px monospace`;
-
-      for (let i = 0; i < drops.length; i++) {
-        const text = chars[Math.floor(Math.random() * chars.length)];
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
-      }
-      animId = requestAnimationFrame(draw);
-    };
-
-    draw();
-
-    return () => {
-      window.removeEventListener("resize", resize);
-      cancelAnimationFrame(animId);
-    };
-  }, []);
-
-  return <canvas ref={canvasRef} className="absolute inset-0 opacity-[0.08]" />;
-}
 
 
 function PacketSniffer() {
@@ -87,9 +31,9 @@ function PacketSniffer() {
       </div>
       <div className="flex flex-col justify-end h-[calc(100%-20px)]">
         {packets.map((p, i) => (
-          <motion.div key={i} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="truncate">
+          <div key={i} className="truncate">
             {p}
-          </motion.div>
+          </div>
         ))}
       </div>
     </div>
@@ -99,9 +43,6 @@ function PacketSniffer() {
 export function HackingBackground() {
   return (
     <div className="fixed inset-0 pointer-events-none z-[-1] overflow-hidden bg-[#050505]">
-      {/* Real-time Canvas Effects */}
-      <MatrixRain />
-      
       {/* Grid Pattern */}
       <div className="absolute inset-0" style={{
         backgroundImage: `linear-gradient(rgba(255, 30, 39, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 30, 39, 0.03) 1px, transparent 1px)`,

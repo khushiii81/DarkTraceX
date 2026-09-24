@@ -254,16 +254,8 @@ export default function HomePage() {
               DTX
             </div>
             <h1 className="relative text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-none mb-6">
-              <span className="glitch text-white" data-text="Dark">
-                Dark
-              </span>
-              <span
-                className="glitch glow-text-red"
-                style={{ color: "#dc143c" }}
-                data-text="Trace"
-              >
-                Trace
-              </span>
+              <span className="text-white">Dark</span>
+              <span className="text-[#dc143c]">Trace</span>
               <span className="text-red-400">X</span>
             </h1>
           </div>
