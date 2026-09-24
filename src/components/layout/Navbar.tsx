@@ -24,13 +24,9 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <motion.div
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6, type: "spring" }}
-              className="w-10 h-10 flex items-center justify-center overflow-hidden relative drop-shadow-[0_0_10px_rgba(255,0,0,0.5)]"
-            >
+            <div className="w-10 h-10 flex items-center justify-center relative">
               <Image src="/logo.png" alt="DarkTraceX" fill sizes="40px" className="object-contain" />
-            </motion.div>
+            </div>
             <span className="font-mono font-bold text-lg tracking-tight">
               <span className="text-red-500">Dark</span>
               <span className="text-white">Trace</span>
