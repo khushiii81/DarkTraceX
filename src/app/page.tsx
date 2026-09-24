@@ -13,6 +13,13 @@ import {
   Lock,
   ChevronRight,
   Zap,
+  AlertTriangle, 
+  Radio, 
+  Smartphone, 
+  FileWarning, 
+  Key, 
+  Skull,
+  BarChart2
 } from "lucide-react";
 import { ThreatGlobeCanvas } from "@/components/ui/ThreatGlobe";
 
@@ -92,9 +99,8 @@ function TerminalTyper() {
 const FEATURES = [
   {
     icon: Network,
-    title: "Virus vs Worm Simulation",
-    description:
-      "3D animated network topology contrasting virus file-attachment with worm self-propagation.",
+    title: "Phishing & Dropper",
+    description: "Simulate a weaponized email macro dropping a PowerShell stager and C2 payload.",
     color: "from-red-900/30 to-red-950/10",
     border: "border-red-900/40",
     href: "/module/1",
@@ -102,19 +108,17 @@ const FEATURES = [
   },
   {
     icon: Cpu,
-    title: "PE Structure Inspector",
-    description:
-      "Interactive Portable Executable visualizer with DOS Header, PE Signature, and Section Table tabs.",
+    title: "Obfuscation & Unpacking",
+    description: "Analyze packed executables, control-flow flattening, and in-memory IAT rebuilding.",
     color: "from-orange-900/30 to-orange-950/10",
     border: "border-orange-900/40",
     href: "/module/2",
     module: "02",
   },
   {
-    icon: Shield,
-    title: "Hash & Static Analyzer",
-    description:
-      "Visualize MD5, SHA-1, SHA-256 generation and extract suspicious API strings.",
+    icon: BarChart2,
+    title: "Sandbox Evasion",
+    description: "Deploy evasion mechanics, execution throttling, and contrast sandbox vs VM telemetry.",
     color: "from-rose-900/30 to-rose-950/10",
     border: "border-rose-900/40",
     href: "/module/3",
@@ -122,9 +126,8 @@ const FEATURES = [
   },
   {
     icon: Lock,
-    title: "Packer Obfuscation Lab",
-    description:
-      "See how UPX compresses executables to reduce size and evade static detection.",
+    title: "Multi-Vector Persistence",
+    description: "Establish persistence via Registry Run keys, WMI triggers, and Windows Service hijacking.",
     color: "from-red-900/30 to-red-950/10",
     border: "border-red-900/40",
     href: "/module/4",
@@ -133,8 +136,7 @@ const FEATURES = [
   {
     icon: Activity,
     title: "Dynamic Behavior Tracker",
-    description:
-      "Simulate runtime analysis: process creation, file mods, registry Run keys.",
+    description: "Simulate dynamic analysis with process timelines, file system mods, and Registry persistence.",
     color: "from-orange-900/30 to-orange-950/10",
     border: "border-orange-900/40",
     href: "/module/5",
@@ -143,18 +145,71 @@ const FEATURES = [
   {
     icon: Bug,
     title: "Process Injection Lab",
-    description:
-      "Animate shellcode injection into a legitimate process, executing under its context.",
+    description: "Animate shellcode injection into a legitimate process, executing under its context.",
     color: "from-rose-900/30 to-rose-950/10",
     border: "border-rose-900/40",
     href: "/module/6",
     module: "06",
   },
+  {
+    icon: AlertTriangle,
+    title: "WannaCry Ransomware",
+    description: "Experience the mechanics of a real ransomware attack and interact with the infamous ransom note.",
+    color: "from-red-900/30 to-red-950/10",
+    border: "border-red-900/40",
+    href: "/module/7",
+    module: "07",
+  },
+  {
+    icon: Radio,
+    title: "Stuxnet ICS Sabotage",
+    description: "Observe the malicious PLC override that destroyed nuclear centrifuges in the real world.",
+    color: "from-orange-900/30 to-orange-950/10",
+    border: "border-orange-900/40",
+    href: "/module/8",
+    module: "08",
+  },
+  {
+    icon: Smartphone,
+    title: "Pegasus Zero-Click",
+    description: "Animate an invisible zero-click payload silently extracting encrypted device data.",
+    color: "from-rose-900/30 to-rose-950/10",
+    border: "border-rose-900/40",
+    href: "/module/9",
+    module: "09",
+  },
+  {
+    icon: FileWarning,
+    title: "Emotet / TrickBot",
+    description: "Analyze how a malicious macro document downloads a fileless payload into memory.",
+    color: "from-red-900/30 to-red-950/10",
+    border: "border-red-900/40",
+    href: "/module/10",
+    module: "10",
+  },
+  {
+    icon: Key,
+    title: "Zeus / RedLine Stealer",
+    description: "Watch registry persistence and active memory scraping for browser credentials.",
+    color: "from-orange-900/30 to-orange-950/10",
+    border: "border-orange-900/40",
+    href: "/module/11",
+    module: "11",
+  },
+  {
+    icon: Skull,
+    title: "NotPetya Wiper",
+    description: "Simulate a fake ransomware attack that actually wipes the Master Boot Record (MBR).",
+    color: "from-rose-900/30 to-rose-950/10",
+    border: "border-rose-900/40",
+    href: "/module/12",
+    module: "12",
+  },
 ];
 
 // ─── Stats ────────────────────────────────────────────────────────────────────
 const STATS = [
-  { value: "6", label: "Attack Modules", suffix: "" },
+  { value: "12", label: "Attack Modules", suffix: "" },
   { value: "100", label: "Safe Sandbox", suffix: "%" },
   { value: "0", label: "Real Malware", suffix: "" },
   { value: "24", label: "Live Simulations", suffix: "/7" },
